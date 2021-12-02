@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------------------------------------------------------------
-// Configuration for OnStep - AstroRobot - 2021-12-02
+// Configuration for OnStep - AstroRobot - 2021-12-02 v1
 
 /*
  *          For more information on setting OnStep up see http://www.stellarjourney.com/index.php?r=site/equipment_onstep 
