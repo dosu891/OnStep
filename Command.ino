@@ -133,7 +133,7 @@ void processCommands() {
           reply[0]=MAX_NUM_ALIGN_STARS;
           reply[1]='0'+alignThisStar;
           reply[2]='0'+alignNumStars;
-          reply[3]=0;
+          reply[3]=0;reply[3]=0;reply[3]=0;reply[3]=0;
           boolReply=false;
         } else
 // :A[n]#     Start Telescope Manual Alignment Sequence
@@ -1081,6 +1081,13 @@ void processCommands() {
 #else
           if (parameter[0] == 'X' || parameter[0] == 'Y') commandError=CE_0; else // silent errors for feature detection
 #endif
+#ifdef ADDON_FEATURES_PRESENT		//@DS
+        if (parameter[0] == 'Z') { // Zn: get Addon auXiliary feature  :GXZ1#
+			reply[0] = addon_feature_1 + '0';
+			reply[1]=0;
+			boolReply=false;
+        } else
+#endif
             commandError=CE_CMD_UNKNOWN;
         } else commandError=CE_CMD_UNKNOWN;
       } else
@@ -2017,6 +2024,11 @@ void processCommands() {
 #ifdef FEATURES_PRESENT
         if (parameter[0] == 'X') { // Xn: set auXiliary feature
           featuresSetCommand(parameter);
+        } else
+#endif
+#ifdef ADDON_FEATURES_PRESENT		//@DS
+        if (parameter[0] == 'Z') { // Zn: set Addon auXiliary feature  :SXZ1,0#
+			addon_feature_1 = parameter[3] - '0';
         } else
 #endif
           commandError=CE_CMD_UNKNOWN;

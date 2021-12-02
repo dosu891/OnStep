@@ -67,6 +67,7 @@
 #if AXIS1_ENC > 0 && AXIS2_ENC > 0
   #define ENCODERS ON
 #endif
+#define ADDON_FEATURES_PRESENT		// @DS
 
 // get NV ready
 #if defined(ARDUINO_ARCH_SAMD) && ENCODERS == ON
@@ -101,6 +102,7 @@ int cmdTimeout=TIMEOUT_CMD;
 #if ENCODERS == ON
   Encoders encoders;
 #endif
+#include "AddonFeatures.h"			// @DS
 
 // macros to help with sending webpage data
 #define sendHtmlStart()
@@ -271,6 +273,11 @@ Again:
   encoders.init();
 #endif
 
+#ifdef ADDON_FEATURES_PRESENT  //@DS
+  VLF("WEM: Starting AddonFeatures");
+  AddonfeaturesInit();
+#endif
+
   VLF("WEM: Ethernet Addon is ready");
 }
 
@@ -280,6 +287,11 @@ void loop(void){
 #if ENCODERS == ON
   encoders.poll();
 #endif
+#ifdef ADDON_FEATURES_PRESENT  //@DS
+  VLF("WEM: Starting AddonFeatures");
+  AddonfeaturesPoll();
+#endif
+
 
   // check clients for data, if found get the command, send cmd and pickup the response, then return the response
   static char cmdBuffer[40]="";

@@ -476,3 +476,8 @@ features feature[8] = {
   {FEATURE8_NAME,FEATURE8_PURPOSE,FEATURE8_TEMP,FEATURE8_PIN,FEATURE8_DEFAULT_VALUE,FEATURE8_ACTIVE_STATE,NULL,NULL}
 };
 #endif
+
+// addon aux pin control @DS
+#ifdef ADDON_FEATURES_PRESENT
+char addon_feature_1 = 0;
+#endif
