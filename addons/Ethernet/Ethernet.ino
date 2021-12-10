@@ -44,7 +44,7 @@
 
 // Enable debug and/or status messages to be passed to OnStep for display using its debug facilities
 // default "DEBUG OFF", use "DEBUG ON" for background errors only, use "DEBUG VERBOSE" for all errors and status messages
-#define DEBUG OFF
+#define DEBUG VERBOSE
 
 #include <limits.h>
 
@@ -214,9 +214,9 @@ Again:
   VF("WEM: Web Channel Timeout ms= "); VL(webTimeout);
   VF("WEM: Cmd Channel Timeout ms= "); VL(cmdTimeout);
 
-  VF("WEM: Ethernet IP     = "); VL(ip.toString());
-  VF("WEM: Ethernet GATEWAY= "); VL(gateway.toString());
-  VF("WEM: Ethernet SUBNET = "); VL(subnet.toString());
+  //VF("WEM: Ethernet IP     = "); VL(ip.toString());       //@DS
+  //VF("WEM: Ethernet GATEWAY= "); VL(gateway.toString());  //@DS
+  //VF("WEM: Ethernet SUBNET = "); VL(subnet.toString());   //@DS
 
 #if W5500 == ON
   VLF("WEM: Resetting W5500 using pin 9");
@@ -288,7 +288,7 @@ void loop(void){
   encoders.poll();
 #endif
 #ifdef ADDON_FEATURES_PRESENT  //@DS
-  VLF("WEM: Starting AddonFeatures");
+  //VLF("WEM: Poll AddonFeatures");
   AddonfeaturesPoll();
 #endif
 

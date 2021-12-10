@@ -482,6 +482,8 @@
   #define FEATURES_PRESENT
 #endif
 
+#define ADDON_FEATURES_PRESENT  //@DS
+
 #ifdef FEATURES_PRESENT
 #ifndef FEATURE1_NAME
   #error "Configuration (Config.h): Setting FEATURE1_NAME must be present!"
