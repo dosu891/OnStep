@@ -126,6 +126,12 @@
 #define SWITCH_UNPARKED             5
 #define AUXILLARY_LAST              5
 
+// various auxillary addon features @DS
+#define ADDON_AUXILLARY_FIRST       1
+//#define SWITCH                      1  // already defined with auxillary features
+#define DIGITAL_IN                  2
+#define ADDON_AUXILLARY_LAST        2
+
 // coordinate mode for getting and setting RA/Dec
 #define OBSERVED_PLACE              1
 #define TOPOCENTRIC                 2

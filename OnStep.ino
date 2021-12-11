@@ -287,6 +287,7 @@ void setup() {
 #endif
 #ifdef ADDON_FEATURES_PRESENT   //@DS
   VLF("MSG: Init addon auxiliary features");
+  addonFeaturesInit();
 #endif
 
   // this sets up the sidereal timer and tracking rates
@@ -578,6 +579,11 @@ void loop2() {
     // UPDATE AUXILIARY FEATURES
 #ifdef FEATURES_PRESENT
     featuresPoll();
+#endif
+    
+    // UPDATE ADDON AUXILIARY FEATURES @DS
+#ifdef ADDON_FEATURES_PRESENT
+    addonFeaturesPoll();
 #endif
     
     // WEATHER

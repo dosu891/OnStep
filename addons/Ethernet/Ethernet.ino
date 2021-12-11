@@ -67,7 +67,6 @@
 #if AXIS1_ENC > 0 && AXIS2_ENC > 0
   #define ENCODERS ON
 #endif
-#define ADDON_FEATURES_PRESENT		// @DS
 
 // get NV ready
 #if defined(ARDUINO_ARCH_SAMD) && ENCODERS == ON

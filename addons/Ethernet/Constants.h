@@ -29,6 +29,7 @@
 #define ANALOG_OUTPUT 2
 #define DEW_HEATER 3
 #define INTERVALOMETER 4
+#define DIGITAL_IN     2  //@DS
 
 // Helper macros for debugging, with less typing
 // Use VF or VLF for strings (supports embedded spaces)

@@ -249,6 +249,33 @@
 #define FEATURE8_PIN                  OFF //    OFF, AUX, CHAIN (ds2413 gpio1,) n. Where n=0 to 255 (pin#.)                   Adjust
 #define FEATURE8_DEFAULT_VALUE        OFF //    OFF, ON, n. Where n=0..255 for ANALOG_OUT purpose.                            Adjust
 
+
+// AUXILIARY ADDON FEATURE CONTROL ------------------------------ @DS -- ALSO UPDATE OnStep\addons\Ethernet\Config.h
+#define ADDON_FEATURE1_NAME               "FAN" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE1_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE1_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE2_NAME          "TEL OPEN" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE2_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE2_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE3_NAME        "TEL_CLOSED" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE3_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE3_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE4_NAME          "FEATURE4" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE4_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE4_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE5_NAME          "FEATURE5" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE5_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE5_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE6_NAME          "FEATURE6" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE6_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE6_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE7_NAME          "FEATURE7" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE7_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE7_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE8_NAME          "FEATURE8" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE8_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE8_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+
 // THAT'S IT FOR USER CONFIGURATION!
 
 // -------------------------------------------------------------------------------------------------------------------------

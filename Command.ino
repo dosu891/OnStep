@@ -1082,10 +1082,8 @@ void processCommands() {
           if (parameter[0] == 'X' || parameter[0] == 'Y') commandError=CE_0; else // silent errors for feature detection
 #endif
 #ifdef ADDON_FEATURES_PRESENT		//@DS
-        if (parameter[0] == 'Z') { // Zn: get Addon auXiliary feature  :GXZ1#
-			reply[0] = addon_feature_1 + '0';
-			reply[1]=0;
-			boolReply=false;
+        if (parameter[0] == 'Z') { // Zn: get Addon auXiliary feature  :GXZn#
+          addonFeaturesGetCommand(parameter,reply,boolReply);
         } else
 #endif
             commandError=CE_CMD_UNKNOWN;
@@ -2028,7 +2026,7 @@ void processCommands() {
 #endif
 #ifdef ADDON_FEATURES_PRESENT		//@DS
         if (parameter[0] == 'Z') { // Zn: set Addon auXiliary feature  :SXZ1,0#
-			addon_feature_1 = parameter[3] - '0';
+          addonFeaturesSetCommand(parameter);
         } else
 #endif
           commandError=CE_CMD_UNKNOWN;
