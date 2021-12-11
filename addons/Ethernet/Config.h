@@ -81,13 +81,13 @@ IPAddress subnet(255, 255, 255, 0);
 #define ADDON_FEATURE3_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE3_PIN                    3 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE3_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
-#define ADDON_FEATURE4_NAME          "FEATURE4" // "FE..", Name of feature being controlled.                                        Adjust
-#define ADDON_FEATURE4_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATURE4_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE4_NAME      "TEL OPEN MuSW" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE4_PURPOSE       DIGITAL_IN //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE4_PIN                   11 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE4_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
-#define ADDON_FEATURE5_NAME          "FEATURE5" // "FE..", Name of feature being controlled.                                        Adjust
-#define ADDON_FEATURE5_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATURE5_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE5_NAME   "TEL CLOSED MuSW" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE5_PURPOSE       DIGITAL_IN //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE5_PIN                   12 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE5_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 #define ADDON_FEATURE6_NAME          "FEATURE6" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE6_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
