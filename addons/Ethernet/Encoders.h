@@ -32,6 +32,7 @@ volatile int32_t __p1,__p2;
 #include "Enc_AB.h"
 #include "Enc_CwCcw.h"
 #include "Enc_BiSS_C_BC.h"
+#include "Enc_EMS22A.h"  //@DS
 
 // encoder polling rate in seconds, default=2.0
 #define POLLING_RATE 2.0

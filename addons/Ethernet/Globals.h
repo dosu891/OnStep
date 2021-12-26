@@ -28,6 +28,10 @@
   #define AXIS1_ENC_B_PIN 6  // pin# for Axis1 encoder, for B or CCW
   #define AXIS2_ENC_A_PIN 7  // pin# for Axis2 encoder, for A or CW
   #define AXIS2_ENC_B_PIN 8  // pin# for Axis2 encoder, for B or CCW
+  #define AXIS1_ENC_CS_PIN    // pin# for Axis1 encoder, for CS  @DS
+  #define AXIS2_ENC_CS_PIN    // pin# for Axis1 encoder, for CS  @DS
+  #define AXIS_ENC_CLK_PIN    // pin# for Axis1 and 2 encoder, for CLOCK  @DS
+  #define AXIS_ENC_DATA_PIN    // pin# for Axis1 and 2 encoder, for DATA  @DS
 #endif
 
 #if !defined(LED_STATUS_ON_STATE)
