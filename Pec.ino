@@ -49,6 +49,9 @@ void pec() {
     long dist; if (wormSensePos > pecPos) dist=wormSensePos-pecPos; else dist=pecPos-wormSensePos;
 
     static int lastValue; lastValue=pecValue; pecValue=digitalRead(PecPin);
+    if (pecValue == PEC_SENSE_STATE) { //@DS - to be removed, only for testing
+      VL("PEC: Index detected!");
+    }
     if ((dist > stepsPerSecondAxis1*60.0) && (pecValue != lastValue) && (pecValue == PEC_SENSE_STATE)) {
       wormSensePos=pecPos;
       wormSensedAgain=true;

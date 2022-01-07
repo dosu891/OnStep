@@ -1,6 +1,8 @@
 // -------------------------------------------------------------------------------------------------------
 // Handle Auxiliary Features on the AddOn (Teensy 3.2)
 // @DS
+// LX200-command to read a DIGITAL_IN pin: :GXZn#   for n:1-8"
+// LX200-command to read a SWITCH pin: :SXZn,v#   for n:1-8 and c=0 or 1"
 #pragma once
 
 #include "Accessories.h"

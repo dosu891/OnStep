@@ -508,6 +508,7 @@ void loop2() {
       delayMicroseconds(50);
       byte limit_2nd = digitalRead(LimitPin);
       if (limit_2nd == LIMIT_SENSE_STATE) {
+        VLF("MSG: Limit Sensed");  //@DS - to be removed, only for testing
         // It is still low, there must be a problem
         generalError=ERR_LIMIT_SENSE;
         stopSlewingAndTracking(SS_LIMIT);

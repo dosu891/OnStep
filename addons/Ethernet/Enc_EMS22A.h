@@ -84,7 +84,7 @@
         }
 
         encPos = pos;
-        V("ENC: Current position: "); VL(encPos);
+        V("ENC: Current position axis "); V(_axis); V(" : "); VL(encPos);
         return true;
       }
   };
