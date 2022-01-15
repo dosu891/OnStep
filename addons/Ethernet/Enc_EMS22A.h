@@ -21,7 +21,7 @@
         pinMode(_clkPin,OUTPUT);
         digitalWrite(_clkPin,LOW);
         pinMode(_csPin,OUTPUT);
-        digitalWrite(_csPin,LOW);
+        digitalWrite(_csPin,HIGH);
         pinMode(_dataPin,INPUT);  // was INPUT_PULLUP
         if (_axis == 1) _offset=nv.readLong(EE_ENC_A1_ZERO);
         if (_axis == 2) _offset=nv.readLong(EE_ENC_A2_ZERO);
@@ -57,9 +57,7 @@
         // rate in microseconds, ie 2+2 = 4 = 250KHz
         int rate=2;
         // prepare for a reading
-        digitalWrite(_csPin, HIGH);
-        delayMicroseconds(rate);
-        digitalWrite(_csPin, LOW);
+        digitalWrite(_csPin, LOW);  // select encoder for communication
         delayMicroseconds(rate);
 
         for (int i = 0; i < 16; i++) {
@@ -74,6 +72,9 @@
         digitalWrite(_clkPin, LOW);
         delayMicroseconds(rate);
         digitalWrite(_clkPin, HIGH);
+        delayMicroseconds(rate);
+        
+        digitalWrite(_csPin, HIGH);  // deselect encoder for communication
         delayMicroseconds(rate);
 
         //extract 10 bit position from data stream use testStream
