@@ -19,6 +19,7 @@
 #define AB 1
 #define CWCCW 2
 #define BC_BISSC 3
+#define EMS22A 4  //@DS
 
 #define DEFAULT_AJAX_RATE "5"        // normally 5 seconds between updates
 #define DEFAULT_FAST_AJAX_RATE "1"   // fast update is 1 second/update

@@ -113,7 +113,7 @@ void AddonfeaturesPoll() {
       if (s[0]=='0' || s[0]=='1'){
         int new_value = s[0]-'0' == 0 ? 0 : addonFeature[i].active;
         if( addonFeature[i].value != new_value) {
-          V("WEM: Wrtite feature "); V(i+'1'); V(": "); VL(s);
+          VF("WEM: Wrtite feature "); V(i); V(": "); VL(s);
           AddonfeaturesSetCommand(i,new_value);
         }
       }
@@ -125,7 +125,7 @@ void AddonfeaturesPoll() {
         char c[40]="";
         char v = addonFeature[i].value == 0 ? '0' : '1';
         sprintf(c,":SXZ%c,%c#",i+'1',v);
-        V("WEM: Read feature "); V(i+'1'); V(": "); VL(v);
+        VF("WEM: Read feature "); V(i); V(": "); VL(v);
         command(c,s);
       }
     }

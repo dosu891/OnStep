@@ -22,7 +22,7 @@
         digitalWrite(_clkPin,LOW);
         pinMode(_csPin,OUTPUT);
         digitalWrite(_csPin,LOW);
-        pinMode(_dataPin,INPUT);  # was INPUT_PULLUP
+        pinMode(_dataPin,INPUT);  // was INPUT_PULLUP
         if (_axis == 1) _offset=nv.readLong(EE_ENC_A1_ZERO);
         if (_axis == 2) _offset=nv.readLong(EE_ENC_A2_ZERO);
       }
@@ -71,9 +71,9 @@
           stream[i] = digitalRead(_dataPin);
         }
 
-        digitalWrite(PIN_CLOCK, LOW);
+        digitalWrite(_clkPin, LOW);
         delayMicroseconds(rate);
-        digitalWrite(PIN_CLOCK, HIGH);
+        digitalWrite(_clkPin, HIGH);
         delayMicroseconds(rate);
 
         //extract 10 bit position from data stream use testStream
@@ -84,7 +84,7 @@
         }
 
         encPos = pos;
-        V("ENC: Current position axis "); V(_axis); V(" : "); VL(encPos);
+        V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : "); VL(encPos);
         return true;
       }
   };
