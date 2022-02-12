@@ -18,11 +18,8 @@
         _csPin=csPin;
         _dataPin=dataPin;
         _axis=axis;
-        pinMode(_clkPin,OUTPUT);
-        digitalWrite(_clkPin,LOW);
-        pinMode(_csPin,OUTPUT);
-        digitalWrite(_csPin,HIGH);
-        pinMode(_dataPin,INPUT);  // was INPUT_PULLUP
+        _ports_initiated=false;  
+        // HW not yet ready to initiate ports
         if (_axis == 1) _offset=nv.readLong(EE_ENC_A1_ZERO);
         if (_axis == 2) _offset=nv.readLong(EE_ENC_A2_ZERO);
       }
@@ -50,44 +47,75 @@
       int16_t _csPin;
       int16_t _dataPin;
       int16_t _axis;
+      bool _ports_initiated;
+
+      void initiatePorts() {
+          VF("EMS22A: Set pins axis ");VL(_axis);
+          pinMode(_clkPin,OUTPUT);
+          digitalWrite(_clkPin,HIGH);
+          pinMode(_csPin,OUTPUT);
+          digitalWrite(_csPin,HIGH);
+          pinMode(_dataPin,INPUT);
+          _ports_initiated = true;
+      }
       
       bool readEnc(uint32_t &encPos) {
-        byte stream[16] = {0};
-
         // rate in microseconds, ie 2+2 = 4 = 250KHz
-        int rate=2;
-        // prepare for a reading
-        digitalWrite(_csPin, LOW);  // select encoder for communication
-        delayMicroseconds(rate);
+        int rate=1;
+        int pos = 0;
 
+        // initiate ports if not done yet
+        if(!_ports_initiated)  initiatePorts();
+        
+        digitalWrite(_clkPin, HIGH);
+        digitalWrite(_csPin, HIGH); // do not select the encoder (yet)
+        delayMicroseconds(rate);
+        digitalWrite(_csPin, LOW);  // select encoder to read
+        delayMicroseconds(rate);
+      
+        byte stream[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        
         for (int i = 0; i < 16; i++) {
           digitalWrite(_clkPin, LOW);
           delayMicroseconds(rate);
           digitalWrite(_clkPin, HIGH);
           delayMicroseconds(rate);
-   
+      
           stream[i] = digitalRead(_dataPin);
+          delayMicroseconds(rate);
         }
-
+      
         digitalWrite(_clkPin, LOW);
         delayMicroseconds(rate);
         digitalWrite(_clkPin, HIGH);
         delayMicroseconds(rate);
-        
-        digitalWrite(_csPin, HIGH);  // deselect encoder for communication
+      
+        digitalWrite(_csPin, HIGH);  //encoder not active
         delayMicroseconds(rate);
 
         //extract 10 bit position from data stream use testStream
-        uint32_t pos = 0;
+        pos = 0; //clear previous data
         for (int i = 0; i < 10; i++) {
           pos = pos << 1;
           pos += stream[i];
         }
+      
+        //calculate parity from the whole stream (which includes the 
+        //parity bit, the result should always be 0
+        int parity = 0;
+        for (int i = 0; i < 16; i++) {
+          if( stream[i] == 1 ){
+            parity = 1 - parity;  //swap parity from 0 to 1 or for 1 to 0
+          }
+        } 
 
-        encPos = pos;
-        V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : "); VL(encPos);
+        encPos = parity == 0 ? pos : INT32_MAX;
+        //V("ENC: high:"); V(HIGH); V("_low:");VL(LOW);
+        //V("ENC: Pins "); V(_axis); V("_CS:");V(_csPin);V("_CLK:");V(_clkPin);V("_DATA:");VL(_dataPin);
+        V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : ");V("_");VL(encPos);
         return true;
       }
+      
   };
 
 #if AXIS1_ENC == EMS22A

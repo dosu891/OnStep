@@ -127,6 +127,7 @@ void setup(void){
 
 #if LED_STATUS != OFF
   pinMode(LED_STATUS,OUTPUT);
+  VLF("WEM: Activate LED_STATUS");
 #endif
 
 // EEPROM Init

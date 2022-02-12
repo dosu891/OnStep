@@ -59,13 +59,6 @@ addonFeatures addonFeature[8] = {
   {ADDON_FEATURE8_NAME,ADDON_FEATURE8_PURPOSE,ADDON_FEATURE8_PIN,ADDON_FEATURE8_DEFAULT_VALUE,ADDON_FEATURE8_ACTIVE_STATE}
 };
 
-//#define FEATURE1_PIN 13          //LED
-//#define FEATURE1_PIN 10          //FAN
-//#define FEATURE1_PIN 2           //TELESCOPE OPEN
-//#define FEATURE1_PIN 3           //TELESCOPE CLOSED
-
-//#define FEATURE1_DEFAULT_VALUE 0		//Initial value at startup
-//#define FEATURE1_ACTIVE_VALUE 1			//value to represents an active pin (0 or 1)
 #define FEATURE1_GET_CMD ":GXZ1#"		//LX200 command to get the feature value from the main board
 
 char feature1_previous_value = 0;
@@ -94,10 +87,13 @@ void AddonfeaturesInit() {
   for (int i=0; i < 8; i++) {
     if (addonFeature[i].purpose == SWITCH) {
       pinMode(addonFeature[i].pin,OUTPUT);
+      VF("WEM: setup feature OUTPUT "); V(i); V(": "); VL(addonFeature[i].pin);
+          
       AddonfeaturesSetCommand(i,addonFeature[i].value);
     } else if (addonFeature[i].purpose == DIGITAL_IN) {
       pinMode(addonFeature[i].pin,INPUT);
       AddonfeaturesGetCommand(i);
+      VF("WEM: setup feature INPUT "); V(i); V(": "); VL(addonFeature[i].pin);
     }
   } 
 }
@@ -113,7 +109,7 @@ void AddonfeaturesPoll() {
       if (s[0]=='0' || s[0]=='1'){
         int new_value = s[0]-'0' == 0 ? 0 : addonFeature[i].active;
         if( addonFeature[i].value != new_value) {
-          VF("WEM: Wrtite feature "); V(i); V(": "); VL(s);
+          VF("WEM: Write feature "); V(i); V(": "); VL(s);
           AddonfeaturesSetCommand(i,new_value);
         }
       }
