@@ -169,7 +169,7 @@ double longitude                        = 0.0;
 
 // Coordinates ---------------------------------------------------------------------------------------------------------------------
 #ifndef TELESCOPE_COORDINATES
-  #define TELESCOPE_COORDINATES TOPOCENTRIC
+  #define TELESCOPE_COORDINATES OBSERVED_PLACE  // @DS WAS: TOPOCENTRIC
 #endif 
 
 #ifndef AXIS1_HOME_DEFAULT

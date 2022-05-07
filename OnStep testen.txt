@@ -1,0 +1,131 @@
+22-05-02
+- Turn off PEC (:$QZ-#)
+- Meet declinatie: 25.33mm
+- tracking rate / theoretisch: 62.16427
+- Beta Leo -  RA: 11h50m11.939s DE:+14°26'53.52"
+
+- move regulus naar beta leo: na positionering ra:11:53:31 dec:14:26:54
+afwijking:49.75 bgmin te weinig
+over een beweging van 25.1625 graden
+3.295247%
+steps/deg: 58941
+
+- 2de slew van beta naar regulus
+dan positioneren: 10:09:25  - +11:51:41
+fout is 2bgmin 
+steps/deg: 59019
+
+-3de slew van reg naar betadan 
+positionering: 45bgsec te veel
+steps/deg: 58990
+
+Declinatie calibratie
+van regulus naar 21 Leonis Minoris
+RA: 10h08m44.093s DE:+35°08'19.11"
+na correctie: +35:17:48
+fout van 9.4833bgmin
+Verplaatsing van 23.4380555
+orig steps/deg: 12633.2
+nieuw: 12548
+
+Poging2
+van 21 naar regulus
+na positioner: +11:50:03
+fout: 1.46667bgmin
+nieuuw: 12561
+
+22-04-24
+- Regulus: 10h09m33.210s DE:+11°51'31.02"
+
+22-04-23
+- test nauwkeurigheid klok OnStep
+- Initiate 06:38:00 UTC
+- Final 17:42:00 UTC - diff 0sec
+
+22-04-22
+- test nauwkeurigheid klok OnStep
+- Initiate 18:09:34 UTC
+- Final 21:34:00 UTC - diff 0sec
+
+22-04-20
+- Align finderscope / done
+- Dec callibratie
+	start_enc:90.0
+	start_mount: 90.0
+	end_enc:c201.094055
+	end_mount: -21:05:39 - -111,0941666666667
+	start: M:51.65  D:90    -	Enc 89.296951
+	end: M:82.25  D:+56:43:19 - E: 120.234528
+	diff M:30.6 D: 33,2780 - E:30,937577
+	verhouding: 1,087516339869281
+	steps/DEG: 12800.0 -> 13920,2091503268
+	
+	start: M:52.20  D:90    -	Enc 90
+	end: M:85.90  D:59.37:21 - E: 59.62
+	diff M:33.7 D:30.38  - E:
+	verhouding: 
+	steps/DEG: 13920,21 -> 13360
+	
+	start: M:50.60  D:90    -	Enc 90
+	end: M:62.55  D:+27:08:32 - E: 27,149775
+	diff M:66.85 D:62.87  - E:62.85
+	verhouding: 
+	steps/DEG: 13360
+	
+Leo: 10:09:33  +11:51:26
+
+Correction RA steps/degree
+start: 57061.1 drift oost
+57211
+57411 drift oost
+57711 oost
+58711 oost
+59711 west
+59511 west
+59211 west
+58960 west
+58890 oost
+58940 oost
+58955 oost
+58958 oost
+58959 
+	
+	
+	
+
+22-04-18
+Te testen
+- OnStep test richting Noord
+	!!Dec motor reverse
+	Home position: Kijker 'op zijn kop' richt hemel noorpool
+	Commando: :hF# - Set Home
+	!!Dec motor valt uit na 10 sec na beweging (blijvend geluid)
+	!!2Do: verwijder alle debuginfo
+- monteren D300
+	Adapter staat op de Skywatcher
+	Meebrengen van een occulair met groot beeldveld om een zoekster te vinden, zoeker af te stellen en scherpstelling te regelen
+- Meet RA snelheid 
+	RA 15:35:31, na 30sec: 17:35:37, na 60s: 19:32:39
+	17:20:46  na 60s: 13:19:39, na 1m30s: 11:19:36, na 2min: 9:19:14
+- Telescope Controller
+	Debug off in OnStep (Onstep.ino)
+	check set date/time without confirmation!
+	
+
+- monteren SBIG
+- scherpstelling SBIG
+	
+- scherpstelling D300
+- Monteren digitale zoeker (?)
+- OnStep test richting Oost
+- OnStep test software:
+	- tracking
+	- set date/loc
+	- move n, e, s, w, ne
+	- get ra/dec
+	- slew to ra/dec
+	- get az/alt
+- Onstep get encoder values
+- OnSTep get microsteps position
+	
+
