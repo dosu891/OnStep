@@ -47,14 +47,14 @@ IPAddress subnet(255, 255, 255, 0);
 // ENCODER SUPPORT -----------------------------------------------------------------------------------------------------------------
 #define ENC_AUTO_SYNC_DEFAULT          ON //     ON, Automatically sync Encoders to OnStep.                                   Option
 
-#define AXIS1_ENC                     OFF //EMS22A //    OFF, CWCCW, AB, BC_BISSC, EMS22A. Dec/Alt Axis (A/CW/MA) & (B/CCW/SLO.)@DS    Option
+#define AXIS1_ENC                     EMS22A //    OFF, CWCCW, AB, BC_BISSC, EMS22A. Dec/Alt Axis (A/CW/MA) & (B/CCW/SLO.)@DS    Option
 #define AXIS1_ENC_REVERSE             OFF //    OFF, ON to reverse the count direction.                                       Adjust
 #define AXIS1_ENC_TICKS_DEG       2.84444 // 22.222, n, (ticks/degree.) Encoder ticks per degree.                             Adjust
 #define AXIS1_ENC_DIFF_LIMIT_TO      3600 //    300, n, (arcsec.) Minimum diff. between encoder/OnStep for sync. to OnStep.   Adjust
 #define AXIS1_ENC_DIFF_LIMIT_FROM     OFF //    OFF, n, (arcsec.) Maximum diff. between encoder/OnStep for sync. from OnStep. Adjust
                                           //         For absolute encoders, leave off when setting Zero, then enable.
                                           
-#define AXIS2_ENC                     OFF //EMS22A //    OFF, CWCCW, AB, BC_BISSC. Dec/Alt Axis (A/CW/MA) & (B/CCW/SLO.)               Option
+#define AXIS2_ENC                     EMS22A //    OFF, CWCCW, AB, BC_BISSC. Dec/Alt Axis (A/CW/MA) & (B/CCW/SLO.)               Option
 #define AXIS2_ENC_REVERSE             OFF //    OFF, ON to reverse the count direction.                                       Option
 #define AXIS2_ENC_TICKS_DEG       2.84444 // 22.222, n, (ticks/degree.) Encoder ticks per degree.                             Adjust
 #define AXIS2_ENC_DIFF_LIMIT_TO      3600 //    300, n, (arcsec.) Minimum diff. between encoder/OnStep for sync. to OnStep.   Adjust

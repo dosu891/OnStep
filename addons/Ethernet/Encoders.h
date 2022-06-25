@@ -142,13 +142,13 @@ class Encoders {
     void zeroFromOnStep() {
   #ifdef ENC_HAS_ABSOLUTE_AXIS1
       axis1Pos.write(_osAxis1*(double)Axis1EncTicksPerDeg);
-    #ifdef AXIS1_ENC == EMS22A  //@DS
+    #if AXIS1_ENC == EMS22A  //@DS
       axis1Pos.setZero();       //@DS
     #endif                      //@DS
   #endif
   #ifdef ENC_HAS_ABSOLUTE_AXIS2
       axis2Pos.write(_osAxis2*(double)Axis2EncTicksPerDeg);
-    #ifdef AXIS2_ENC == EMS22A  //@DS
+    #if AXIS2_ENC == EMS22A  //@DS
       axis2Pos.setZero();       //@DS
     #endif                      //@DS
   #endif
@@ -196,7 +196,7 @@ class Encoders {
         if (encAutoSync && mountStatus.valid() && !_enAxis1Fault && !_enAxis2Fault) {
           if (mountStatus.atHome() || mountStatus.parked() || mountStatus.aligning() || mountStatus.syncToEncodersOnly()) {
           //  syncFromOnStep();                                                                                                //@DS
-            if(!zeroDone && (mountStatus.nrOfAlignmentStars()>1)){ zeroFromOnStep(); zeroDone=true;}       //write zero to eeprom once when 1st alignment star is set   //@DS
+            if(!zeroDone && (mountStatus.nrAlignmentStars()>1)){ zeroFromOnStep(); zeroDone=true;}       //write zero to eeprom once when 1st alignment star is set   //@DS
             else { syncFromOnStep();  if(mountStatus.nrAlignmentStars()==0) zeroDone=false; }                                                //@DS
             // re-enable normal operation once we're updated here
             if (mountStatus.syncToEncodersOnly()) { Ser.print(":SX43,1#"); Ser.readBytes(s,1); }
@@ -211,7 +211,7 @@ class Encoders {
         {
           char s[20]=""; 
           command(":GX4W#",s);
-          if((strlen(s) == 1) && s[0]='Y') zeroFromOnStep();  
+          if((strlen(s) == 1) && (s[0]=='Y')) zeroFromOnStep();  
         }
         
         // automatic rate compensation
