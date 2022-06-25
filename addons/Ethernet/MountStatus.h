@@ -129,6 +129,7 @@ class MountStatus {
     bool getVer(char ver[]) { if (!_valid) return false; else { strcpy(ver,_ver); return true; } }
     bool valid() { return _valid; }
     bool aligning() { char s[20]=""; if (command(":A?#",s) && strlen(s) == 3 && s[1] <= s[2] && s[1] != '0') return true; else return false; }
+    int nrOfAlignmentStars() { char s[20]=""; if (command(":GW#",s) && strlen(s) == 3) return (s[2]-'0'); else return 0; } //@DS
     bool tracking() { return _tracking; }
     bool slewing() { return _slewing; }
     bool parked() { return _parked; }

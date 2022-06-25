@@ -39,6 +39,7 @@
         if (_axis == 1) nv.writeLong(EE_ENC_A1_ZERO,_offset);
         if (_axis == 2) nv.writeLong(EE_ENC_A2_ZERO,_offset);
         nv.commit();
+        V("ENC: Current offset writen to EEPROM for Axis"); V(_axis); V(" - Offset:"); VL(_offset);
       }
     private:
       uint32_t _position=0;
@@ -110,9 +111,7 @@
         } 
 
         encPos = parity == 0 ? pos : INT32_MAX;
-        //V("ENC: high:"); V(HIGH); V("_low:");VL(LOW);
-        //V("ENC: Pins "); V(_axis); V("_CS:");V(_csPin);V("_CLK:");V(_clkPin);V("_DATA:");VL(_dataPin);
-        V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : ");V("_");VL(encPos);
+        //V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : ");V("_");VL(encPos);
         return true;
       }
       

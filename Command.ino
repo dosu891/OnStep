@@ -1,4 +1,3 @@
-// -----------------------------------------------------------------------------------
 // Command processing
 
 // last RA/Dec time
@@ -897,6 +896,12 @@ void processCommands() {
               case '2': getEnc(&f,&f1); dtostrf(f,0,6,reply); boolReply=false; break;                       // Get absolute Axis1 angle in degrees
               case '3': getEnc(&f,&f1); dtostrf(f1,0,6,reply); boolReply=false; break;                      // Get absolute Axis2 angle in degrees
               case '9': cli(); dtostrf(trackingTimerRateAxis1,1,8,reply); sei(); boolReply=false; break;    // Get current tracking rate
+              case 'W': {  //@DS
+                if(storeEncodersOffset) reply[0]='Y'; else reply[0]='N'; 
+                storeEncodersOffset=false;
+                reply[1]=0;
+                boolReply=false;
+              }
               default:  commandError=CE_CMD_UNKNOWN;
             }
           } else
@@ -1849,6 +1854,9 @@ void processCommands() {
               break;
             case '3': // re-enable setting OnStep to Encoders after a Sync 
               syncToEncodersOnly=false;
+              break;
+            case 'W': //store encoder offsets to EEPROM  @DS
+              storeEncodersOffset=true;
               break;
             default: commandError=CE_CMD_UNKNOWN;
           }

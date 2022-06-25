@@ -142,9 +142,15 @@ class Encoders {
     void zeroFromOnStep() {
   #ifdef ENC_HAS_ABSOLUTE_AXIS1
       axis1Pos.write(_osAxis1*(double)Axis1EncTicksPerDeg);
+    #ifdef AXIS1_ENC == EMS22A  //@DS
+      axis1Pos.setZero();       //@DS
+    #endif                      //@DS
   #endif
   #ifdef ENC_HAS_ABSOLUTE_AXIS2
       axis2Pos.write(_osAxis2*(double)Axis2EncTicksPerDeg);
+    #ifdef AXIS2_ENC == EMS22A  //@DS
+      axis2Pos.setZero();       //@DS
+    #endif                      //@DS
   #endif
     }
 #endif
@@ -159,6 +165,7 @@ class Encoders {
     void poll() {
       // check encoders and sync OnStep if diff is too great, checks every 2 seconds
       static unsigned long nextEncCheckMs=millis()+(unsigned long)(POLLING_RATE*1000.0);
+      static bool zeroDone=false;
       unsigned long temp=millis();
       char *conv_end;
       if ((long)(temp-nextEncCheckMs)>0) {
@@ -177,16 +184,20 @@ class Encoders {
         if (pos == INT32_MAX) _enAxis1Fault = true; else _enAxis1Fault=false;
         _enAxis1=(double)pos/(double)Axis1EncTicksPerDeg;
         if (Axis1EncRev == ON) _enAxis1=-_enAxis1;
+        V("ENC: Current position axis1:"); V(pos);  //@DS
 
         pos=axis2Pos.read();
         if (pos == INT32_MAX) _enAxis2Fault = true; else _enAxis2Fault=false;
         _enAxis2=(double)pos/(double)Axis2EncTicksPerDeg;
         if (Axis2EncRev == ON) _enAxis2=-_enAxis2;
+        V(" axis2:"); VL(pos);                      //@DS
 
         mountStatus.update();
         if (encAutoSync && mountStatus.valid() && !_enAxis1Fault && !_enAxis2Fault) {
           if (mountStatus.atHome() || mountStatus.parked() || mountStatus.aligning() || mountStatus.syncToEncodersOnly()) {
-            syncFromOnStep();
+          //  syncFromOnStep();                                                                                                //@DS
+            if(!zeroDone && (mountStatus.nrOfAlignmentStars()>1)){ zeroFromOnStep(); zeroDone=true;}       //write zero to eeprom once when 1st alignment star is set   //@DS
+            else { syncFromOnStep();  if(mountStatus.nrAlignmentStars()==0) zeroDone=false; }                                                //@DS
             // re-enable normal operation once we're updated here
             if (mountStatus.syncToEncodersOnly()) { Ser.print(":SX43,1#"); Ser.readBytes(s,1); }
           } else
@@ -196,6 +207,13 @@ class Encoders {
             }
         }
 
+        // Check for save offset Command from OnStep  @DS
+        {
+          char s[20]=""; 
+          command(":GX4W#",s);
+          if((strlen(s) == 1) && s[0]='Y') zeroFromOnStep();  
+        }
+        
         // automatic rate compensation
 #if AXIS1_ENC_RATE_CONTROL == ON
 
