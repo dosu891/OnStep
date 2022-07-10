@@ -896,11 +896,19 @@ void processCommands() {
               case '2': getEnc(&f,&f1); dtostrf(f,0,6,reply); boolReply=false; break;                       // Get absolute Axis1 angle in degrees
               case '3': getEnc(&f,&f1); dtostrf(f1,0,6,reply); boolReply=false; break;                      // Get absolute Axis2 angle in degrees
               case '9': cli(); dtostrf(trackingTimerRateAxis1,1,8,reply); sei(); boolReply=false; break;    // Get current tracking rate
-              case 'W': {  //@DS
+              case 'V': {  //@DS  Check the loadEncodersOffset parameter and set to false - if true, the offset values will be loaded from EEPROM
+                if(loadEncodersOffset) reply[0]='Y'; else reply[0]='N'; 
+                loadEncodersOffset=false;
+                reply[1]=0;
+                boolReply=false;
+                break;
+              }
+              case 'W': {  //@DS  Check the storeEncodersOffset parameter and set to false - if true, the offset values will be stored in EEPROM
                 if(storeEncodersOffset) reply[0]='Y'; else reply[0]='N'; 
                 storeEncodersOffset=false;
                 reply[1]=0;
                 boolReply=false;
+                break;
               }
               default:  commandError=CE_CMD_UNKNOWN;
             }
@@ -1854,6 +1862,13 @@ void processCommands() {
               break;
             case '3': // re-enable setting OnStep to Encoders after a Sync 
               syncToEncodersOnly=false;
+              break;
+            case 'U': // sync encoder to last values and set encoder offsets @DS
+              syncEnc(encoderAxis1,encoderAxis2);
+              syncToEncodersOnly=true;
+              break;
+            case 'V': //sync current offsets with the one in EEPROM  @DS
+              loadEncodersOffset=true;
               break;
             case 'W': //store encoder offsets to EEPROM  @DS
               storeEncodersOffset=true;

@@ -31,6 +31,7 @@
       void write(int32_t v) {
         if (_position != INT32_MAX) {
           if (readEnc(_position)) {
+            VL("Write!");
             _offset = v - (int32_t)_position;
           }
         }
@@ -40,6 +41,11 @@
         if (_axis == 2) nv.writeLong(EE_ENC_A2_ZERO,_offset);
         nv.commit();
         V("ENC: Current offset writen to EEPROM for Axis"); V(_axis); V(" - Offset:"); VL(_offset);
+      }
+      void getZero() {    //@DS
+        if (_axis == 1) _offset=nv.readLong(EE_ENC_A1_ZERO);
+        if (_axis == 2) _offset=nv.readLong(EE_ENC_A2_ZERO);      
+        V("ENC: Current offset loaded from EEPROM for Axis"); V(_axis); V(" - Offset:"); VL(_offset);
       }
     private:
       uint32_t _position=0;
@@ -111,7 +117,7 @@
         } 
 
         encPos = parity == 0 ? pos : INT32_MAX;
-        //V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : ");V("_");VL(encPos);
+        V("ENC: Current position axis "); V(_axis); V("_");V(_csPin);V(" : ");V("_");VL(encPos);
         return true;
       }
       

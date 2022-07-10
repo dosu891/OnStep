@@ -117,13 +117,15 @@ volatile int32_t __p1,__p2;
 class Encoders {
   public:
     void init() {
+      V("Axis1EncDiffTo:");VL(Axis1EncDiffTo);
+      V("Axis2EncDiffTo:");VL(Axis1EncDiffTo);
     }
 
     // automatically sync the encoders from OnStep's position when at home or parked
     void syncFromOnStep() {
       // don't sync if the Encoders vs. OnStep disagree by too much
       if (Axis1EncDiffFrom != OFF && fabs(_osAxis1-_enAxis1) > (double)(Axis1EncDiffFrom/3600.0)) return;
-      if (Axis2EncDiffFrom != OFF && fabs(_osAxis1-_enAxis1) > (double)(Axis1EncDiffFrom/3600.0)) return;
+      if (Axis2EncDiffFrom != OFF && fabs(_osAxis2-_enAxis2) > (double)(Axis2EncDiffFrom/3600.0)) return; //@DS bug?
         
       if (Axis1EncRev == ON)
         axis1Pos.write(-_osAxis1*(double)Axis1EncTicksPerDeg);
@@ -137,18 +139,38 @@ class Encoders {
 
     }
     
+    // reset offset from EEPROM       //@DS
+#ifdef ENC_HAS_ABSOLUTE
+    void resetOffset() {                   
+  #ifdef ENC_HAS_ABSOLUTE_AXIS1
+    axis1Pos.getZero();
+  #endif
+  #ifdef ENC_HAS_ABSOLUTE_AXIS2
+    axis2Pos.getZero();
+  #endif
+    }
+#endif
+
     // zero absolute encoders from OnStep's position
 #ifdef ENC_HAS_ABSOLUTE
     void zeroFromOnStep() {
   #ifdef ENC_HAS_ABSOLUTE_AXIS1
-      axis1Pos.write(_osAxis1*(double)Axis1EncTicksPerDeg);
+      //axis1Pos.write(_osAxis1*(double)Axis1EncTicksPerDeg);         //@DS bug???  
+      if (Axis1EncRev == ON)                                          //@DS
+        axis1Pos.write(-_osAxis1*(double)Axis1EncTicksPerDeg);        //@DS
+      else                                                            //@DS
+        axis1Pos.write(_osAxis1*(double)Axis1EncTicksPerDeg);         //@DS
     #if AXIS1_ENC == EMS22A  //@DS
       axis1Pos.setZero();       //@DS
     #endif                      //@DS
   #endif
   #ifdef ENC_HAS_ABSOLUTE_AXIS2
-      axis2Pos.write(_osAxis2*(double)Axis2EncTicksPerDeg);
-    #if AXIS2_ENC == EMS22A  //@DS
+      //axis2Pos.write(_osAxis2*(double)Axis2EncTicksPerDeg);         //@DS bug???
+      if (Axis2EncRev == ON)                                          //@DS
+        axis2Pos.write(-_osAxis2*(double)Axis2EncTicksPerDeg);        //@DS
+      else                                                            //@DS
+        axis2Pos.write(_osAxis2*(double)Axis2EncTicksPerDeg);         //@DS
+      #if AXIS2_ENC == EMS22A  //@DS
       axis2Pos.setZero();       //@DS
     #endif                      //@DS
   #endif
@@ -157,6 +179,7 @@ class Encoders {
     
     void syncToOnStep() {
         char s[22];
+        VL("syncToOnStep");
         // automatically sync OnStep to the encoders' position
         Ser.print(":SX40,"); Ser.print(_enAxis1,6); Ser.print("#"); Ser.readBytes(s,1);
         Ser.print(":SX41,"); Ser.print(_enAxis2,6); Ser.print("#"); Ser.readBytes(s,1);
@@ -184,29 +207,43 @@ class Encoders {
         if (pos == INT32_MAX) _enAxis1Fault = true; else _enAxis1Fault=false;
         _enAxis1=(double)pos/(double)Axis1EncTicksPerDeg;
         if (Axis1EncRev == ON) _enAxis1=-_enAxis1;
-        V("ENC: Current position axis1:"); V(pos);  //@DS
+        V("ENC: Current position axis1:"); VL(pos);  //@DS
 
         pos=axis2Pos.read();
         if (pos == INT32_MAX) _enAxis2Fault = true; else _enAxis2Fault=false;
         _enAxis2=(double)pos/(double)Axis2EncTicksPerDeg;
         if (Axis2EncRev == ON) _enAxis2=-_enAxis2;
-        V(" axis2:"); VL(pos);                      //@DS
+        V("ENC: Current position axis2:"); VL(pos);                      //@DS
 
         mountStatus.update();
         if (encAutoSync && mountStatus.valid() && !_enAxis1Fault && !_enAxis2Fault) {
-          if (mountStatus.atHome() || mountStatus.parked() || mountStatus.aligning() || mountStatus.syncToEncodersOnly()) {
-          //  syncFromOnStep();                                                                                                //@DS
+          //if (mountStatus.atHome() || mountStatus.parked() || mountStatus.aligning() || mountStatus.syncToEncodersOnly()) {
+          if (mountStatus.aligning() || mountStatus.syncToEncodersOnly()) {  //@DS
+            syncFromOnStep();
+            /*
             if(!zeroDone && (mountStatus.nrAlignmentStars()>1)){ zeroFromOnStep(); zeroDone=true;}       //write zero to eeprom once when 1st alignment star is set   //@DS
             else { syncFromOnStep();  if(mountStatus.nrAlignmentStars()==0) zeroDone=false; }                                                //@DS
+            */
             // re-enable normal operation once we're updated here
             if (mountStatus.syncToEncodersOnly()) { Ser.print(":SX43,1#"); Ser.readBytes(s,1); }
           } else
             if (!mountStatus.slewing() && !mountStatus.guiding()) {
+              Axis1EncDiffTo = 3600; //@DS
+              Axis2EncDiffTo = 3600; //@DS
+              V(_osAxis1);V("_");V(_enAxis1);V("_");VL((double)(Axis1EncDiffTo/3600.0));
+              V(_osAxis2);V("_");V(_enAxis2);V("_");VL((double)(Axis2EncDiffTo/3600.0));
               if ((fabs(_osAxis1-_enAxis1)>(double)(Axis1EncDiffTo/3600.0)) ||
                   (fabs(_osAxis2-_enAxis2)>(double)(Axis2EncDiffTo/3600.0))) syncToOnStep();
             }
         }
 
+        // Check for load offset Command from OnStep  @DS
+        {
+          char s[20]=""; 
+          command(":GX4V#",s);
+          if((strlen(s) == 1) && (s[0]=='Y')) resetOffset();  
+        }
+        
         // Check for save offset Command from OnStep  @DS
         {
           char s[20]=""; 
