@@ -2048,7 +2048,7 @@ void processCommands() {
         } else
 #endif
 #ifdef ADDON_FEATURES_PRESENT		//@DS
-        if (parameter[0] == 'Z') { // Zn: set Addon auXiliary feature  :SXZ1,0#
+        if (parameter[0] == 'Z') { // Zn: set Addon auXiliary feature  :SXZn,0#
           addonFeaturesSetCommand(parameter);
         } else
 #endif

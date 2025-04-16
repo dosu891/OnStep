@@ -68,7 +68,7 @@ IPAddress subnet(255, 255, 255, 0);
                                           //         For skew in the average guide rate over the last worm period.            Option
 #define AXIS1_ENC_BIN_AVG             OFF //    OFF, n, (Number of bins.)  Enables binned rolling average feature.            Option
 
-// AUXILIARY ADDON FEATURE CONTROL ------------------------------ @DS -- ALSO UPDATE OnStep\Config.h
+// AUXILIARY ADDON FEATURE CONTROL ------------------------------ @DS -- ALSO UPDATE OnStep\Config.h !!!!
 #define ADDON_FEATURE1_NAME               "FAN" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE1_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE1_PIN                   11 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
@@ -101,5 +101,33 @@ IPAddress subnet(255, 255, 255, 0);
 #define ADDON_FEATURE8_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE8_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE8_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATURE9_NAME          "FEATURE9" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE9_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE9_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE9_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATUREA_NAME          "FEATUREA" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREA_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREA_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREA_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATUREB_NAME          "FEATUREB" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREB_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREB_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREB_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATUREC_NAME          "FEATUREC" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREC_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREC_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREC_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATURED_NAME          "FEATURED" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURED_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURED_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURED_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATUREE_NAME          "FEATUREE" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREE_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREE_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREE_DEFAULT_VALUE        OFF //    OFF, ON     
+#define ADDON_FEATUREF_NAME          "FEATUREF" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREF_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREF_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREF_DEFAULT_VALUE        OFF //    OFF, ON     
 // THAT'S IT FOR USER CONFIGURATION!
 // ---------------------------------------------------------------------------------------------------------------------------------

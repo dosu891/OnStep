@@ -260,7 +260,7 @@
 #define ADDON_FEATURE3_NAME        "TEL_CLOSED" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE3_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE3_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
-#define ADDON_FEATURE4_NAME      "TEL OPEN MuSW" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE4_NAME     "TEL OPEN MuSW" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE4_PURPOSE       DIGITAL_IN //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE4_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 #define ADDON_FEATURE5_NAME   "TEL CLOSED MuSW" // "FE..", Name of feature being controlled.                                        Adjust
@@ -275,6 +275,27 @@
 #define ADDON_FEATURE8_NAME          "FEATURE8" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE8_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE8_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURE9_NAME          "FEATUREP" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE9_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURE9_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATUREA_NAME          "FEATUREA" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREA_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREA_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATUREB_NAME          "FEATUREB" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREB_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREB_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATUREC_NAME          "FEATUREC" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREC_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREC_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATURED_NAME          "FEATURED" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURED_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATURED_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATUREE_NAME          "FEATUREE" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREE_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREE_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
+#define ADDON_FEATUREF_NAME          "FEATUREF" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREF_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREF_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 
 // THAT'S IT FOR USER CONFIGURATION!
 

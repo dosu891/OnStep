@@ -108,3 +108,11 @@ double frac(double v) {
 double cot(double n) {
   return 1.0/tan(n);
 }
+
+//@DS - add to avoid the compilation error undefined reference to `_write'
+extern "C" {
+  int _write( int handle, char *buf, int count )
+  {
+      return Serial.write(buf, count);
+  }
+}
