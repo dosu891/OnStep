@@ -85,8 +85,8 @@
   #define Axis3_M2             7     // SPI CS or Decay Mode
   #define Axis3_M3          Aux1     // SPI MISO
 #endif
-#define Axis3_STEP            30     // Step
-#define Axis3_DIR             33     // Dir
+#define Axis3_STEP            34     // Step - old:30 @DS
+#define Axis3_DIR             35     // Dir - old:33 @DS
 
 // For focuser1 stepper driver
 #define Axis4_EN            Aux6     // Enable
@@ -96,8 +96,8 @@
   #define Axis4_M2             8     // SPI CS or Decay Mode
   #define Axis4_M3          Aux1     // SPI MISO
 #endif
-#define Axis4_STEP            34     // Step
-#define Axis4_DIR             35     // Dir
+#define Axis4_STEP            30     // Step - old:34 @DS
+#define Axis4_DIR             33     // Dir - old:35 @DS
 
 // For focuser2 stepper driver
 #define Axis5_EN            Aux5     // Enable
