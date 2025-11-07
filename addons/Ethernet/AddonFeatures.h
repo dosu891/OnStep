@@ -150,7 +150,7 @@ void AddonfeaturesPoll() {
       AddonfeaturesGetCommand(i);
       if( addonFeature[i].value != previous_value) {
         char s[40] = "";
-        char c[40]="";
+        char c[40] = "";
         char v = addonFeature[i].value == 0 ? '0' : '1';
         if(i<9) {
           sprintf(c,":SXZ%c,%c#",i+'1',v);

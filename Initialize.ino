@@ -176,6 +176,9 @@ void initPins() {
     pinMode(Axis2_FAULT,INPUT);
   #endif
 #endif
+#if FOCUSER1 == ON            //activate the input from the low endswitch @DS
+ pinMode(Axis4_END,INPUT);
+#endif
 }
 
 void initWriteNvValues() {

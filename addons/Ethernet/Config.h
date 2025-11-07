@@ -69,17 +69,17 @@ IPAddress subnet(255, 255, 255, 0);
 #define AXIS1_ENC_BIN_AVG             OFF //    OFF, n, (Number of bins.)  Enables binned rolling average feature.            Option
 
 // AUXILIARY ADDON FEATURE CONTROL ------------------------------ @DS -- ALSO UPDATE OnStep\Config.h !!!!
-#define ADDON_FEATURE1_NAME               "FAN" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATURE1_NAME         "FAN_ONDER" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE1_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATURE1_PIN                   11 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE1_PIN                   22 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE1_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 #define ADDON_FEATURE2_NAME          "TEL OPEN" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE2_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATURE2_PIN                    2 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE2_PIN                    3 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE2_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 #define ADDON_FEATURE3_NAME        "TEL_CLOSED" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE3_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATURE3_PIN                    3 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATURE3_PIN                    2 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE3_DEFAULT_VALUE        OFF //    OFF, ON                                                                       Adjust
 #define ADDON_FEATURE4_NAME      "TEL OPEN MuSW" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURE4_PURPOSE       DIGITAL_IN //    OFF, SWITCH, DIGITAL_IN                                                       Option
@@ -105,17 +105,17 @@ IPAddress subnet(255, 255, 255, 0);
 #define ADDON_FEATURE9_PURPOSE       DIGITAL_IN //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATURE9_PIN                   17 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATURE9_DEFAULT_VALUE         ON //    OFF, ON     
-#define ADDON_FEATUREA_NAME         "HEATER_ON" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREA_NAME  "HEATER_SECOND_ON" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATUREA_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
 #define ADDON_FEATUREA_PIN                   18 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATUREA_DEFAULT_VALUE        OFF //    OFF, ON     
-#define ADDON_FEATUREB_NAME          "FEATUREB" // "FE..", Name of feature being controlled.                                        Adjust
-#define ADDON_FEATUREB_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATUREB_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREB_NAME    "HEATER_COMA_ON" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREB_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREB_PIN                   23 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATUREB_DEFAULT_VALUE        OFF //    OFF, ON     
-#define ADDON_FEATUREC_NAME          "FEATUREC" // "FE..", Name of feature being controlled.                                        Adjust
-#define ADDON_FEATUREC_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATUREC_PIN                  OFF //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREC_NAME         "FAN_BOVEN" // "FE..", Name of feature being controlled.                                        Adjust
+#define ADDON_FEATUREC_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
+#define ADDON_FEATUREC_PIN                  11  //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATUREC_DEFAULT_VALUE        OFF //    OFF, ON     
 #define ADDON_FEATURED_NAME          "FEATURED" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURED_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option

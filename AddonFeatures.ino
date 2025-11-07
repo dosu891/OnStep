@@ -40,13 +40,14 @@ void addonFeaturesSetCommand(char *parameter) {
   //check the feature number
   int i=parameter[1]-'1'; 
   int j=parameter[1]-'A'; VL("j="); VL(j); //@DS
-  VL("i="); VL(i);
-  VL("j="); VL(j);
+  V("i="); VL(i);
+  V("j="); VL(j);
  //if (i < 0 || i > 7)  { commandError=CE_PARAM_FORM; return; }  //@DS replaced by following lines
   if (i < 0 )  { commandError=CE_PARAM_FORM; return; }
   if (i > 8 && j < 0 )  { commandError=CE_PARAM_FORM; return; }
-  if (j > 4)  { commandError=CE_PARAM_FORM; return; }
+  if (j > 5)  { commandError=CE_PARAM_FORM; return; }
   if (j >= 0 )  { i = j + 9; }
+  V("i(final)="); VL(i);
   VL("PURPOSE");
   VL(addonFeature[i].purpose);
   if (addonFeature[i].purpose == SWITCH || addonFeature[i].purpose == DIGITAL_IN) {
