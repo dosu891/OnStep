@@ -44,6 +44,7 @@
 
 // Enable debug and/or status messages to be passed to OnStep for display using its debug facilities
 // default "DEBUG OFF", use "DEBUG ON" for background errors only, use "DEBUG VERBOSE" for all errors and status messages
+// to write debug messages to the serial monitor of 3.6, start line with VF!
 #define DEBUG OFF
 
 #include <limits.h>

@@ -111,11 +111,11 @@ IPAddress subnet(255, 255, 255, 0);
 #define ADDON_FEATUREA_DEFAULT_VALUE        OFF //    OFF, ON     
 #define ADDON_FEATUREB_NAME    "HEATER_COMA_ON" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATUREB_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATUREB_PIN                   23 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREB_PIN                   2              3 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATUREB_DEFAULT_VALUE        OFF //    OFF, ON     
 #define ADDON_FEATUREC_NAME         "FAN_BOVEN" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATUREC_PURPOSE           SWITCH //    OFF, SWITCH, DIGITAL_IN                                                       Option
-#define ADDON_FEATUREC_PIN                  11  //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
+#define ADDON_FEATUREC_PIN                   11 //    OFF, n. n=0 to 255 (pin#.)                                                    Adjust
 #define ADDON_FEATUREC_DEFAULT_VALUE        OFF //    OFF, ON     
 #define ADDON_FEATURED_NAME          "FEATURED" // "FE..", Name of feature being controlled.                                        Adjust
 #define ADDON_FEATURED_PURPOSE              OFF //    OFF, SWITCH, DIGITAL_IN                                                       Option

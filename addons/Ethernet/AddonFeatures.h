@@ -94,8 +94,10 @@ char feature1_previous_value = 0;
 // set the pin to the new value
 void AddonfeaturesSetCommand(int feature_nr, int parameter) {
   if(addonFeature[feature_nr].purpose == SWITCH) {
+    VF("WEM: Set feature "); V(feature_nr); V(" pin:");V(addonFeature[feature_nr].pin);V(" to value ");VL(addonFeature[feature_nr].value);
     addonFeature[feature_nr].value = parameter == 0 ? 0 : addonFeature[feature_nr].active;
     digitalWrite(addonFeature[feature_nr].pin,addonFeature[feature_nr].value==addonFeature[feature_nr].active?HIGH:LOW);
+    VF("WEM: Set feature "); V(feature_nr); V(" pin:");V(addonFeature[feature_nr].pin);V(" to value ");VL(addonFeature[feature_nr].value);
   }
 }
 
@@ -115,8 +117,8 @@ void AddonfeaturesInit() {
   for (int i=0; i < 15; i++) {
     if (addonFeature[i].purpose == SWITCH) {
       pinMode(addonFeature[i].pin,OUTPUT);
-      VF("WEM: setup feature OUTPUT "); V(i); V(": "); VL(addonFeature[i].pin);
-          
+	    addonFeature[i].value =  addonFeature[i].value == ON ? addonFeature[i].active : 0;
+      VF("WEM: setup feature OUTPUT "); V(i); V(": "); V(addonFeature[i].pin); V(" val:");VL(addonFeature[i].value);
       AddonfeaturesSetCommand(i,addonFeature[i].value);
     } else if (addonFeature[i].purpose == DIGITAL_IN) {
       pinMode(addonFeature[i].pin,INPUT);

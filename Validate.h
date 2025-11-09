@@ -363,7 +363,7 @@
   #define FEATURE8_ACTIVE_STATE 1
 #endif
 
-//@DS - if not defined elsewhere indentify the active state of a pin as "1"
+//@DS - if not defined elsewhere identify the active state of a pin as "1"
 #ifndef ADDON_FEATURE1_ACTIVE_STATE
   #define ADDON_FEATURE1_ACTIVE_STATE 1
 #endif

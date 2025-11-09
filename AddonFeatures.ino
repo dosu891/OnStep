@@ -39,7 +39,7 @@ void addonFeaturesGetCommand(char *parameter, char *reply, bool &boolReply) {
 void addonFeaturesSetCommand(char *parameter) {
   //check the feature number
   int i=parameter[1]-'1'; 
-  int j=parameter[1]-'A'; VL("j="); VL(j); //@DS
+  int j=parameter[1]-'A'; //@DS
   V("i="); VL(i);
   V("j="); VL(j);
  //if (i < 0 || i > 7)  { commandError=CE_PARAM_FORM; return; }  //@DS replaced by following lines
@@ -55,6 +55,7 @@ void addonFeaturesSetCommand(char *parameter) {
     if (parameter[3] != '0' && parameter[3] != '1')  { commandError=CE_PARAM_RANGE; return; }
     int v = parameter[3] - '0';
     //addon_feature_1 = parameter[3] - '0';
+    V("Set i(final)="); V(i); V(" to value "); VL(parameter[3]);
     addonFeature[i].value = v;
   } else { commandError=CE_CMD_UNKNOWN; return; }
 }
