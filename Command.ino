@@ -1,4 +1,3 @@
-// -----------------------------------------------------------------------------------
 // Command processing
 
 // last RA/Dec time
@@ -133,7 +132,7 @@ void processCommands() {
           reply[0]=MAX_NUM_ALIGN_STARS;
           reply[1]='0'+alignThisStar;
           reply[2]='0'+alignNumStars;
-          reply[3]=0;
+          reply[3]=0;reply[3]=0;reply[3]=0;reply[3]=0;
           boolReply=false;
         } else
 // :A[n]#     Start Telescope Manual Alignment Sequence
@@ -897,6 +896,20 @@ void processCommands() {
               case '2': getEnc(&f,&f1); dtostrf(f,0,6,reply); boolReply=false; break;                       // Get absolute Axis1 angle in degrees
               case '3': getEnc(&f,&f1); dtostrf(f1,0,6,reply); boolReply=false; break;                      // Get absolute Axis2 angle in degrees
               case '9': cli(); dtostrf(trackingTimerRateAxis1,1,8,reply); sei(); boolReply=false; break;    // Get current tracking rate
+              case 'V': {  //@DS  Check the loadEncodersOffset parameter and set to false - if true, the offset values will be loaded from EEPROM
+                if(loadEncodersOffset) reply[0]='Y'; else reply[0]='N'; 
+                loadEncodersOffset=false;
+                reply[1]=0;
+                boolReply=false;
+                break;
+              }
+              case 'W': {  //@DS  Check the storeEncodersOffset parameter and set to false - if true, the offset values will be stored in EEPROM
+                if(storeEncodersOffset) reply[0]='Y'; else reply[0]='N'; 
+                storeEncodersOffset=false;
+                reply[1]=0;
+                boolReply=false;
+                break;
+              }
               default:  commandError=CE_CMD_UNKNOWN;
             }
           } else
@@ -1080,6 +1093,11 @@ void processCommands() {
           } else
 #else
           if (parameter[0] == 'X' || parameter[0] == 'Y') commandError=CE_0; else // silent errors for feature detection
+#endif
+#ifdef ADDON_FEATURES_PRESENT		//@DS
+        if (parameter[0] == 'Z') { // Zn: get Addon auXiliary feature  :GXZn#
+          addonFeaturesGetCommand(parameter,reply,boolReply);
+        } else
 #endif
             commandError=CE_CMD_UNKNOWN;
         } else commandError=CE_CMD_UNKNOWN;
@@ -1845,6 +1863,16 @@ void processCommands() {
             case '3': // re-enable setting OnStep to Encoders after a Sync 
               syncToEncodersOnly=false;
               break;
+            case 'U': // sync encoder to last values and set encoder offsets @DS
+              syncEnc(encoderAxis1,encoderAxis2);
+              syncToEncodersOnly=true;
+              break;
+            case 'V': //sync current offsets with the one in EEPROM  @DS
+              loadEncodersOffset=true;
+              break;
+            case 'W': //store encoder offsets to EEPROM  @DS
+              storeEncodersOffset=true;
+              break;
             default: commandError=CE_CMD_UNKNOWN;
           }
         } else
@@ -2017,6 +2045,11 @@ void processCommands() {
 #ifdef FEATURES_PRESENT
         if (parameter[0] == 'X') { // Xn: set auXiliary feature
           featuresSetCommand(parameter);
+        } else
+#endif
+#ifdef ADDON_FEATURES_PRESENT		//@DS
+        if (parameter[0] == 'Z') { // Zn: set Addon auXiliary feature  :SXZn,0#
+          addonFeaturesSetCommand(parameter);
         } else
 #endif
           commandError=CE_CMD_UNKNOWN;

@@ -41,6 +41,7 @@ boolean processCommand(const char cmd[], char response[], long timeOutMs) {
   serialRecvFlush();
 
   // send the command
+  //V("WEM: Process command["); V(cmd); VL("]");
   Ser.print(cmd);
 
   boolean noResponse=false;

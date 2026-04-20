@@ -109,6 +109,8 @@
 #include "src/lib/Weather.h"
 weather ambient;
 
+
+
 #if SERIAL_B_ESP_FLASHING == ON || defined(AddonTriggerPin)
   #include "src/lib/flashAddon.h"
   flashAddon fa;
@@ -284,6 +286,10 @@ void setup() {
 #ifdef FEATURES_PRESENT
   VLF("MSG: Init auxiliary features");
   featuresInit();
+#endif
+#ifdef ADDON_FEATURES_PRESENT   //@DS
+  VLF("MSG: Init addon auxiliary features");
+  addonFeaturesInit();
 #endif
 
   // this sets up the sidereal timer and tracking rates
@@ -504,6 +510,7 @@ void loop2() {
       delayMicroseconds(50);
       byte limit_2nd = digitalRead(LimitPin);
       if (limit_2nd == LIMIT_SENSE_STATE) {
+        VLF("MSG: Limit Sensed");  //@DS - to be removed, only for testing
         // It is still low, there must be a problem
         generalError=ERR_LIMIT_SENSE;
         stopSlewingAndTracking(SS_LIMIT);
@@ -575,6 +582,11 @@ void loop2() {
     // UPDATE AUXILIARY FEATURES
 #ifdef FEATURES_PRESENT
     featuresPoll();
+#endif
+    
+    // UPDATE ADDON AUXILIARY FEATURES @DS
+#ifdef ADDON_FEATURES_PRESENT
+    addonFeaturesPoll();
 #endif
     
     // WEATHER

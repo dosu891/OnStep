@@ -44,6 +44,7 @@
 
 // Enable debug and/or status messages to be passed to OnStep for display using its debug facilities
 // default "DEBUG OFF", use "DEBUG ON" for background errors only, use "DEBUG VERBOSE" for all errors and status messages
+// to write debug messages to the serial monitor of 3.6, start line with VF!
 #define DEBUG OFF
 
 #include <limits.h>
@@ -101,6 +102,7 @@ int cmdTimeout=TIMEOUT_CMD;
 #if ENCODERS == ON
   Encoders encoders;
 #endif
+#include "AddonFeatures.h"			// @DS
 
 // macros to help with sending webpage data
 #define sendHtmlStart()
@@ -126,6 +128,7 @@ void setup(void){
 
 #if LED_STATUS != OFF
   pinMode(LED_STATUS,OUTPUT);
+  VLF("WEM: Activate LED_STATUS");
 #endif
 
 // EEPROM Init
@@ -212,9 +215,9 @@ Again:
   VF("WEM: Web Channel Timeout ms= "); VL(webTimeout);
   VF("WEM: Cmd Channel Timeout ms= "); VL(cmdTimeout);
 
-  VF("WEM: Ethernet IP     = "); VL(ip.toString());
-  VF("WEM: Ethernet GATEWAY= "); VL(gateway.toString());
-  VF("WEM: Ethernet SUBNET = "); VL(subnet.toString());
+  //VF("WEM: Ethernet IP     = "); VL(ip.toString());       //@DS
+  //VF("WEM: Ethernet GATEWAY= "); VL(gateway.toString());  //@DS
+  //VF("WEM: Ethernet SUBNET = "); VL(subnet.toString());   //@DS
 
 #if W5500 == ON
   VLF("WEM: Resetting W5500 using pin 9");
@@ -271,6 +274,11 @@ Again:
   encoders.init();
 #endif
 
+#ifdef ADDON_FEATURES_PRESENT  //@DS
+  VLF("WEM: Starting AddonFeatures");
+  AddonfeaturesInit();
+#endif
+
   VLF("WEM: Ethernet Addon is ready");
 }
 
@@ -280,6 +288,11 @@ void loop(void){
 #if ENCODERS == ON
   encoders.poll();
 #endif
+#ifdef ADDON_FEATURES_PRESENT  //@DS
+  //VLF("WEM: Poll AddonFeatures");
+  AddonfeaturesPoll();
+#endif
+
 
   // check clients for data, if found get the command, send cmd and pickup the response, then return the response
   static char cmdBuffer[40]="";
