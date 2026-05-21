@@ -19,7 +19,8 @@
   #define DS3234_CS_PIN      10      // Default CS Pin for DS3234 on SPI
 #endif
 #ifndef OneWirePin
-  #define OneWirePin        Aux4     // Default Pin for OneWire bus (note: this pin has a 0.1uF capacitor that must be removed for OneWire to function)
+  #define OneWirePin        35     // Default Pin for OneWire bus (note: this pin has a 0.1uF capacitor that must be removed for OneWire to function)
+								   // was Aux4 - note 35 is also assigned to Axis3_DIR  @DS
 #endif
 #if PINMAP == MaxPCB3
   #define AddonBootModePin     2     // ESP8266 GPIO0 (Dir2)
@@ -86,7 +87,7 @@
   #define Axis3_M3          Aux1     // SPI MISO
 #endif
 #define Axis3_STEP            34     // Step - old:30 @DS
-#define Axis3_DIR             35     // Dir - old:33 @DS
+#define Axis3_DIR             13     // Dir - old:33 | Pin also assigned for OneWire @DS
 
 // For focuser1 stepper driver
 #define Axis4_EN            Aux6     // Enable

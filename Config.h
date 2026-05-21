@@ -49,7 +49,7 @@
                                           //         BMP280 (I2C 0x77,) BMP280_0x76, BMP280_SPI (see pinmap for CS.)
                                           //         BME280 or BMP280 for temperature, pressure.  BME280 for humidity also.
                                           
-#define TELESCOPE_TEMPERATURE         OFF //    OFF, DS1820, n. Where n is the DS1820 s/n for focuser temperature.            Adjust
+#define TELESCOPE_TEMPERATURE      DS1820 //    OFF, DS1820, n. Where n is the DS1820 s/n for focuser temperature.            Adjust
 
 #define HOME_SENSE                    OFF //    OFF, ON*. Automatically detect and use home switches. For GEM mode only.      Option
 #define HOME_SENSE_STATE_AXIS1       HIGH //   HIGH, State when clockwise of home position, as seen from front. Rev. w/LOW.   Adjust
@@ -186,7 +186,7 @@
 
 #define AXIS4_LIMIT_MIN_RATE           10 //     50, n. Where n=1..1000 (um/s.) Minimum microns/second. In DC mode, min pwr.  Adjust
 #define AXIS4_LIMIT_MIN                 0 //      0, n. Where n=0..500 (millimeters.) Minimum allowed position.               Adjust
-#define AXIS4_LIMIT_MAX                25 //     50, n. Where n=0..500 (millimeters.) Maximum allowed position.               Adjust
+#define AXIS4_LIMIT_MAX                26 //     50, n. Where n=0..500 (millimeters.) Maximum allowed position.               Adjust
 
 // AXIS5 FOCUSER 2
 // see https://onstep.groups.io/g/main/wiki/6-Configuration#AXIS5
